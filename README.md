@@ -35,6 +35,7 @@ The maximum length (including the ellipsis) of the truncated html.
 *Default: false*
 
 If `stripTags` is truthy all html tags will be stipped, leaving only the text.
+If `stripTags` is an Array then only the tags specified will be stripped.
 
 ```javascript
 > jQuery.truncate('<p>Stuff and <i>Nonsense</i></p>', {
@@ -42,6 +43,14 @@ If `stripTags` is truthy all html tags will be stipped, leaving only the text.
   stripTags: true
 });
 'Stuff and No…'
+```
+
+```javascript
+> jQuery.truncate('<p><strong>Stuff and <i>Nonsense</i></strong></p>', {
+  length: 13,
+  stripTags: ['strong']
+});
+'<p>Stuff and <i>No</i></p>…'
 ```
 
 ### words
