@@ -42,6 +42,8 @@
   test('stripTags', function() {
     strictEqual($.truncate('foo <em>bar baz</em>', {stripTags: true}), 'foo bar baz');
     strictEqual($.truncate('foo <em>bar baz</em>', {length: 8, stripTags: true}), 'foo bar…');
+    strictEqual($.truncate('foo <em><strong>bar</strong> baz</em>', {length: 8, stripTags: true}), 'foo bar…');
+    strictEqual($.truncate('foo <em><strong>bar</strong> baz</em>', {length: 8, stripTags: ['em']}), 'foo <strong>bar</strong>…');
   });
 
   test('entities', function() {

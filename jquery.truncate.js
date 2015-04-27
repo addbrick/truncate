@@ -21,7 +21,16 @@
       var text = self.text();
       var excess = text.length - o.length;
 
-      if (o.stripTags) self.text(text);
+      if (o.stripTags) {
+        // Strip Specific Tags
+        if ($.isArray(o.stripTags)) {
+          self.find(o.stripTags.join(', ')).replaceWith(function(){ return $(this).html() });
+
+        // Strip All Tags
+        } else {
+          self.text(text);
+        }
+      }
 
       // Chop off any partial words if appropriate.
       if (o.words && excess > 0) {
